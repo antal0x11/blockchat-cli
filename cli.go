@@ -2,10 +2,21 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
+	"strconv"
+
+	"github.com/antal0x11/blockchat-cli/dst"
+	"github.com/antal0x11/blockchat-cli/lib"
+	"github.com/joho/godotenv"
 )
 
 func main() {
+
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("# Invalid Configuration.")
+	}
 
 	params := len(os.Args)
 
@@ -13,7 +24,24 @@ func main() {
 	case 4:
 		switch os.Args[1] {
 		case "transaction":
-			fmt.Println("Command transaction")
+
+			amount, err := strconv.ParseFloat(os.Args[3], 64)
+			if err != nil {
+				log.Fatal("# Invalid amount of coins.")
+			}
+
+			_t := dst.Transaction{
+				SenderAddress:     "Tony",
+				RecipientAddress:  os.Args[2],
+				TypeOfTransaction: "coins",
+				Amount:            amount,
+				Message:           "",
+				Nonce:             1,
+				TransactionId:     "asdf234sdfadf",
+				Signature:         "sdfadsf2452342sadf323423",
+			}
+
+			lib.TransactionPublisher(_t)
 		default:
 			help()
 		}
