@@ -22,7 +22,7 @@ var balanceCmd = &cobra.Command{
 	Long:  "Prints the balance of the node",
 	Run: func(cmd *cobra.Command, args []string) {
 
-		resp, err := http.Get(os.Getenv("NODE_IP"))
+		resp, err := http.Get(os.Getenv("NODE_IP") + "/api/balance")
 		if err != nil {
 			log.Fatal("# bctl: error making http request.")
 		}
@@ -40,7 +40,7 @@ var balanceCmd = &cobra.Command{
 				log.Fatal("# bctl: error parsing response.")
 			}
 
-			fmt.Printf("\n=> Your balance is %.f\n\n", data.Balance)
+			fmt.Printf("\n=> Your balance is %.f BCC\n\n", data.Balance)
 		} else {
 			log.Fatal("# bctl: got an invalid response.")
 		}
