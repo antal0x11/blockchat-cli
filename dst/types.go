@@ -27,3 +27,10 @@ type Block struct {
 	PreviousHash string        `json:"previous_hash,omitempty"`
 	Capacity     uint32        `json:"capacity,omitempty"`
 }
+
+type TransactionRequest struct {
+	RecipientAddressID uint32  `json:"recipient_address_id"`
+	TypeOfTransaction  string  `json:"type_of_transaction"`
+	Amount             float64 `json:"amount,omitempty"`
+	Message            string  `json:"message,omitempty"`
+}
