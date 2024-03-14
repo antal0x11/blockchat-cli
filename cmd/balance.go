@@ -40,7 +40,7 @@ var balanceCmd = &cobra.Command{
 				log.Fatal("# bctl: error parsing response.")
 			}
 
-			fmt.Printf("\n=> Your balance is %.f BCC\n\n", data.Balance)
+			fmt.Printf("\n=> Your balance is %.2f BCC\n\n", data.Balance)
 		} else {
 			log.Fatal("# bctl: got an invalid response.")
 		}

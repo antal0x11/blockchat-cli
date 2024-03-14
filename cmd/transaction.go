@@ -40,6 +40,8 @@ var transactionCmd = &cobra.Command{
 
 			_req.RecipientAddressID = uint32(recipientID)
 
+			fmt.Printf("=> Sending transaction to: %d\n", recipientID)
+
 			context, err := strconv.ParseFloat(args[1], 64)
 			if err != nil {
 				_req.TypeOfTransaction = "message"
